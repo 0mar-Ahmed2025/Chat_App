@@ -1,11 +1,18 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:flutter/material.dart';
 import 'package:chat_app/core/utils/app_colors.dart';
 import 'package:chat_app/core/widgets/chat_buble.dart';
 import 'package:chat_app/core/widgets/custom_border_builder.dart';
-import 'package:chat_app/core/widgets/custom_text_field.dart';
-import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  HomeView({super.key});
+
+  CollectionReference messages = FirebaseFirestore.instance.collection(
+    'messages',
+  );
+  TextEditingController messageController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +38,11 @@ class HomeView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(15),
             child: TextField(
+              controller: messageController,
+              onSubmitted: (value) {
+                messages.add({'message': value});
+                messageController.clear();
+              },
               decoration: InputDecoration(
                 hintText: "Send Message",
                 contentPadding: EdgeInsets.symmetric(
@@ -40,9 +52,7 @@ class HomeView extends StatelessWidget {
                 border: borderBuilder(radius: 32),
                 suffixIcon: IconButton(
                   icon: Icon(Icons.send, color: AppColors.primary),
-                  onPressed: () {
-                    // Implement send message functionality
-                  },
+                  onPressed: () {},
                 ),
               ),
             ),
