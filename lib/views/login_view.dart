@@ -89,9 +89,10 @@ class _LoginViewState extends State<LoginView> {
                         "Logged in Successfully,\nWelcome ${user.user!.displayName}",
                         color: Colors.green,
                       );
-                      Navigator.pushReplacementNamed(
+                      Navigator.pushNamed(
                         context,
                         AppRoutes.homeView,
+                        arguments: email,
                       );
                     } on FirebaseAuthException catch (e) {
                       if (e.code == 'user-not-found') {
