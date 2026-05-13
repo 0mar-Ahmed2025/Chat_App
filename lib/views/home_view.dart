@@ -22,7 +22,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     var email = ModalRoute.of(context)!.settings.arguments;
     return StreamBuilder<QuerySnapshot>(
-      stream: messages.orderBy('createdAt').snapshots(),
+      stream: messages.orderBy('createdAt', descending: true).snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<MessageModel> messagesList = [];
@@ -47,6 +47,7 @@ class HomeView extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ListView.builder(
+                      reverse: true,
                       controller: scrollController,
                       itemCount: messagesList.length,
                       itemBuilder: (context, index) {
