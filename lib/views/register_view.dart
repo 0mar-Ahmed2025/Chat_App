@@ -74,20 +74,21 @@ class _RegisterViewState extends State<RegisterView> {
                     password = data;
                   },
                   lableText: "Password",
+                  obscureText: true,
                 ),
                 const SizedBox(height: 10),
                 CustomBtn(
-                  text: "Register",
+                  text: "انشاء حساب",
                   onPressed: () async {
                     if (formKey.currentState?.validate() == false) return;
                     setState(() {
                       isLoading = true;
                     });
                     try {
-                      UserCredential user = await register();
+                      await register();
                       AppPopUp.showSnackBar(
                         context,
-                        "Registered Successfully,\nWelcome ${user.user!.displayName}",
+                        "زي الفل يلا بقا نروح نسجل دخول",
                         color: Colors.green,
                       );
                       Navigator.pop(context);
@@ -95,12 +96,12 @@ class _RegisterViewState extends State<RegisterView> {
                       if (e.code == 'weak-password') {
                         AppPopUp.showSnackBar(
                           context,
-                          'The password provided is too weak.',
+                          'الباسورد اللي انت مدخله ضعيف, حاول تدخل باسورد اقوى',
                         );
                       } else if (e.code == 'email-already-in-use') {
                         AppPopUp.showSnackBar(
                           context,
-                          'The account already exists for that email.',
+                          'الايميل اللي انت مدخله مستخدم يمعلم, حاول تدخل ايميل تاني',
                         );
                       } else {
                         AppPopUp.showSnackBar(context, 'Error: ${e.message}');
@@ -112,8 +113,8 @@ class _RegisterViewState extends State<RegisterView> {
                   },
                 ),
                 CustomTextBtn(
-                  text: "Already have an account ? ",
-                  word: "Login",
+                  text: "لو عامل حساب قبل كدا",
+                  word: "سجل دخول",
                   onPressed: () => Navigator.pop(context),
                 ),
                 Spacer(flex: 3),

@@ -6,8 +6,11 @@ abstract class AppPopUp {
     String message, {
     Color color = Colors.red,
   }) {
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(backgroundColor: color, content: Text(message)));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: color,
+        content: Text(message, style: TextStyle(fontWeight: FontWeight.bold)),
+      ),
+    );
   }
 }
