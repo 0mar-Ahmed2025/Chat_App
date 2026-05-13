@@ -50,7 +50,9 @@ class HomeView extends StatelessWidget {
                       controller: scrollController,
                       itemCount: messagesList.length,
                       itemBuilder: (context, index) {
-                        return ChatBuble(message: messagesList[index]);
+                        return messagesList[index].id == email
+                            ? ChatBuble(message: messagesList[index])
+                            : ChatBubleForFriend(message: messagesList[index]);
                       },
                     ),
                   ),
