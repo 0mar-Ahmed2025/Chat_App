@@ -65,10 +65,11 @@ class HomeView extends StatelessWidget {
                         messages.add({
                           'message': value,
                           'createdAt': DateTime.now(),
+                          'id': email,
                         });
                         messageController.clear();
                         scrollController.animateTo(
-                          scrollController.position.maxScrollExtent,
+                          0,
                           duration: Duration(milliseconds: 100),
                           curve: Curves.easeIn,
                         );
