@@ -30,6 +30,7 @@ class HomeView extends StatelessWidget {
             messagesList.add(MessageModel.fromJson(snapshot.data!.docs[i]));
           }
           return Scaffold(
+            backgroundColor: Colors.yellow[50],
             appBar: AppBar(
               title: Text(
                 "Chat App",
@@ -75,6 +76,8 @@ class HomeView extends StatelessWidget {
                         );
                       },
                       decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
                         hintText: "Send Message",
                         contentPadding: EdgeInsets.symmetric(
                           horizontal: 16,

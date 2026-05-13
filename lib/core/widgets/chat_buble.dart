@@ -1,6 +1,7 @@
 import 'package:chat_app/core/utils/app_colors.dart';
 import 'package:chat_app/models/message_model.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ChatBuble extends StatelessWidget {
   const ChatBuble({super.key, required this.message});
@@ -9,6 +10,7 @@ class ChatBuble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String formattedTime = DateFormat.jm().format(message.createdAt);
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
@@ -36,7 +38,7 @@ class ChatBuble extends StatelessWidget {
             ),
             SizedBox(width: 8),
             Text(
-              "${message.createdAt.hour}:${message.createdAt.minute}",
+              formattedTime,
               style: TextStyle(color: Colors.white54, fontSize: 12),
             ),
             SizedBox(width: 8),
@@ -56,13 +58,15 @@ class ChatBubleForFriend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String formattedTime = DateFormat.jm().format(message.createdAt);
+
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
         padding: EdgeInsets.all(16),
         margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: Colors.orange,
+          color: AppColors.secondary,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(32),
             topRight: Radius.circular(32),
@@ -84,7 +88,7 @@ class ChatBubleForFriend extends StatelessWidget {
             ),
             SizedBox(width: 8),
             Text(
-              "${message.createdAt.hour}:${message.createdAt.minute}",
+              formattedTime,
               style: TextStyle(color: Colors.white54, fontSize: 12),
             ),
           ],

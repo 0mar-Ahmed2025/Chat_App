@@ -83,12 +83,7 @@ class _LoginViewState extends State<LoginView> {
                       isLoading = true;
                     });
                     try {
-                      UserCredential user = await login();
-                      AppPopUp.showSnackBar(
-                        context,
-                        "Logged in Successfully,\nWelcome ${user.user!.displayName}",
-                        color: Colors.green,
-                      );
+                      await login();
                       Navigator.pushNamed(
                         context,
                         AppRoutes.homeView,
