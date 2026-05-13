@@ -1,8 +1,11 @@
 import 'package:chat_app/core/utils/app_colors.dart';
+import 'package:chat_app/models/message_model.dart';
 import 'package:flutter/material.dart';
 
 class ChatBuble extends StatelessWidget {
-  const ChatBuble({super.key});
+  const ChatBuble({super.key, required this.message});
+
+  final MessageModel message;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class ChatBuble extends StatelessWidget {
         ),
 
         child: Text(
-          "Hello, how are you?",
+          message.message,
           style: TextStyle(color: Colors.white, fontSize: 18),
         ),
       ),
